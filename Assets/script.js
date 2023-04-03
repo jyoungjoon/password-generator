@@ -68,7 +68,7 @@ function createPassword() {
   }
 
   // If parsedLength is greater or equal to 20
-  // and if it includes at least one of the characters from possibleCharacters object's values,
+  // and if it includes at least one of the characters from each of the possibleCharacters object's values,
   // then alert is displayed;
   if (
     parsedLength >= 20 &&
