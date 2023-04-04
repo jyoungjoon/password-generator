@@ -15,7 +15,7 @@ function generateRandomPassword(length, characters) {
   // Create an array with its length set as given in the 1st argument using Array.from();
   return Array.from(
     { length },
-    // The created array is then given random characters (using Math.random()) with the 2nd argument passed in;
+    // Array.from is then given a function as its 2nd argument that adds random characters using Math.random();
     () => characters[Math.floor(Math.random() * characters.length)]
     // The array is then joined to form a string using .join(``);
   ).join(``);
@@ -35,13 +35,13 @@ function createPassword() {
   // Parse passwordLength to an integer;
   const parsedLength = parseInt(passwordLength);
   // If parsed input is NaN or if it is less than 8 or greater than 128,
-  // then display the message and call createPassword function;
+  // then display the message and return createPassword function;
   if (isNaN(parsedLength) || parsedLength < 8 || parsedLength > 128) {
     alert(`Please pick a number from 8 to 128!`);
     return createPassword();
   }
 
-  // Object.entries creates an array of [key, value] pairs with possibleCharacters object;
+  // Object.entries() creates an array of [key, value] pairs with possibleCharacters object;
   const includedCharacters = Object.entries(possibleCharacters);
   let newCharacters = ``;
 
@@ -51,7 +51,6 @@ function createPassword() {
     let addCharacters = confirm(
       `Do you want ${includedCharacters[i][0]} characters in your password?`
     );
-
     // If the user clicks 'Ok',
     // then the selected value of [key, value] pair is added to newCharacters string;
     if (addCharacters) {
@@ -67,9 +66,9 @@ function createPassword() {
     return createPassword();
   }
 
-  // If parsedLength is greater or equal to 20
-  // and if it includes at least one of the characters from each of the possibleCharacters object's values,
-  // then alert is displayed;
+  // Only if parsedLength is greater or equal to 20
+  // and only if it includes at least one of the characters from each of the possibleCharacters object's values,
+  // then alert message is displayed;
   if (
     parsedLength >= 20 &&
     newCharacters.includes(`a`) &&
