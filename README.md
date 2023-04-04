@@ -26,6 +26,7 @@ This application is a password generator that creates a random password based on
 ### Executing program
 
 Click🖱️ on the link below to start examining the application.
+
 [Password Generator](https://jyoungjoon.github.io/password-generator/)
 
 ## Help
