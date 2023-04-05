@@ -41,27 +41,25 @@ function createPassword() {
     return createPassword();
   }
 
-  // Object.entries() creates an array of [key, value] pairs with possibleCharacters object;
-  const includedCharacters = Object.entries(possibleCharacters);
-  let newCharacters = ``;
-
-  // Loop through the array created with Object.entries using for loop;
-  // it loops only 4 times since we know that there are just 4 arrays in the array created using Object.entries;
-  for (let i = 0; i < 4; i++) {
-    let addCharacters = confirm(
-      `Do you want ${includedCharacters[i][0]} characters in your password?`
-    );
+  // Create an empty string which will store user's chosen characters
+  let chosenCharacters = ``;
+  // Object.entries() creates an array of destructured [type, chars] pairs with possibleCharacters object;
+  for (const [type, chars] of Object.entries(possibleCharacters)) {
     // If the user clicks 'Ok',
-    // then the selected value of [key, value] pair is added to newCharacters string;
-    if (addCharacters) {
-      newCharacters += includedCharacters[i][1];
+    // then the selected chars is added to chosenCharacters string;
+    // If the user click `Cancel`,
+    // then it continues, without adding any chars, to next iteration;
+    if (confirm(`Do you want ${type} characters in your password?`)) {
+      chosenCharacters += chars;
+    } else {
+      continue;
     }
   }
 
-  // If no character set is added to newCharacters string;
+  // If no character set is added to chosenCharacters string;
   // Ask the user to pick at least one set of characters,
   // then return createPassword function;
-  if (newCharacters.length === 0) {
+  if (chosenCharacters.length === 0) {
     alert(`Please pick at least one character set!`);
     return createPassword();
   }
@@ -71,18 +69,18 @@ function createPassword() {
   // then alert message is displayed;
   if (
     parsedLength >= 20 &&
-    newCharacters.includes(`a`) &&
-    newCharacters.includes(`1`) &&
-    newCharacters.includes(`A`) &&
-    newCharacters.includes(`!`)
+    chosenCharacters.includes(`a`) &&
+    chosenCharacters.includes(`1`) &&
+    chosenCharacters.includes(`A`) &&
+    chosenCharacters.includes(`!`)
   ) {
     alert(`This password should be unbreakable! 😎`);
   }
 
   // Generate a password using generateRandomPassword function
-  // with specified length (parsedLength) and characters (newCharacters),
+  // with specified length (parsedLength) and characters (chosenCharacters),
   // then assign the generated password to passwordText.value
-  const password = generateRandomPassword(parsedLength, newCharacters);
+  const password = generateRandomPassword(parsedLength, chosenCharacters);
   const passwordText = document.querySelector("#password");
   passwordText.value = password;
 }
