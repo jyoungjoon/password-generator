@@ -6,7 +6,7 @@ generateBtn.addEventListener(`click`, createPassword);
 const possibleCharacters = {
   uppercase: `ABCDEFGHIJKLMNOPQRSTUVWXYZ`,
   lowercase: `abcdefghijklmnopqrstuvwxyz`,
-  number: `0123456789`,
+  number: `01234567890123456789`,
   special: `!\"#$%&'()*+,-./:;<=>?@[]^_\`{|}~`,
 };
 
