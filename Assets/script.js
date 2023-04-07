@@ -15,7 +15,7 @@ function generateRandomPassword(length, characters) {
   // Create an array with its length set as given in the 1st argument using Array.from();
   return Array.from(
     { length },
-    // Array.from is then given a function as its 2nd argument that adds random characters using Math.random();
+    // Array.from is then given a function as its 2nd argument that adds random characters[using Math.random()];
     () => characters[Math.floor(Math.random() * characters.length)]
     // The array is then joined to form a string using .join(``);
   ).join(``);
